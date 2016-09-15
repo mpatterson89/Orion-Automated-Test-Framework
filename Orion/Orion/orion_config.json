@@ -1,0 +1,28 @@
+{
+  "main_node" : {
+    "host" : "127.0.0.1",
+    "port" : 1337
+  },
+  "sub_node_1" : {
+    "host" : "uft3.awarix.com",
+    "port" : 6437
+  },
+  "mongodb" : {
+    "host" : "127.0.0.1",
+    "port" : 27017
+  },
+  "angular" : {
+    "host" :"127.0.0.1",
+    "port" : 3000
+  },
+  "data_urls": {
+    "available_tests":"/test-config/get_available_tests",
+    "last_test_batch_id":"/reporting/last_test_batch_id",
+    "last_test_batch":"/reporting/last_test_batch/:batchId",
+    "time_dropdown_values":"/test-config/get_time_dropdown_values",
+    "qa_dropdown_values":"/test-config/get_qa_dropdown_values",
+    "sub_node_dropdown_values":"/test-config/get_sub_node_dropdown_values",
+    "in_use":"in_use"
+  }
+}
+
