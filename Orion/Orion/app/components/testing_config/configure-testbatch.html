@@ -1,0 +1,45 @@
+<div class="scrollable">
+
+        <div class="table">
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr><td><h2 style="padding: 1%; display: inline">Test Environment</h2></td></tr>
+            <tr><td><div style="width: auto; ">
+                    <!--<form [(ngFormModel)]="myForm" (submit)="doThis2($event)">-->
+                    <configure-testbatch-dropdown [setValues]="time_dropdown_values" (sendSelected)="setTestTime($event)"></configure-testbatch-dropdown>
+
+                    <p></p>
+                    <p></p>
+                    <p></p>
+
+                    <configure-testbatch-dropdown [setValues]="qa_server_dropdown_values" (sendSelected)="setQAServer($event)"></configure-testbatch-dropdown>
+
+                    <p></p>
+                    <p></p>
+                    <p></p>
+
+                    <configure-testbatch-dropdown [setValues]="sub_node_dropdown_values" (sendSelected)="setSubNode($event)"></configure-testbatch-dropdown>
+                    <!--</form>-->
+            </div></td></tr>
+            <tr><td><input type="checkbox" (change)="setReoccurring($event)">    Reoccurring Test? </td></tr>
+            <tr><td><h2 style="padding: 1%; display: inline">Test Queue</h2></td></tr>
+
+            <tr class="scrollable">
+                <td class="scrollable">
+                    <div class="table scrollable">
+                        <tr *ngFor="let test of TestQueue_tests; let i = index">
+                            <td>{{test.test_name}}</td>
+                            <td><div style="float: right">
+                                <button class="btn-custom btn-check glyphicon glyphicon-ok"></button>
+                                <button class="btn-custom btn-x glyphicon glyphicon-remove" (click)="removeTest(i)"></button>
+                            </div></td>
+                        </tr>
+            </div></td></tr>
+
+    <tr><td><button class="btn btn-success" (click)="checkValues($event)">Submit</button></td></tr>
+
+        </div>
+
+</div>

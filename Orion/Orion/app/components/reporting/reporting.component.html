@@ -1,0 +1,68 @@
+
+<div>
+    <div  align="left"  style="display: inline-block; width: 20%;
+                            height: 100%; " >
+
+        <div  style="vertical-align: middle; height: 100%;
+                            ">
+            <div *ngIf="!havetestbatch">
+                <h1>Loading...</h1>
+            </div>
+            <div class="outterDiv">
+            <div *ngIf="havetestbatch" id="chart_carrier" align="left" class="innerDiv" >
+
+                <h2 style="color: #00A000;align-content: center; margin-left: 3%" >Last Test Batch</h2>
+                <h6 style="align-content: center; margin-left: 3%"><span style="color: #00A000">Time:</span> {{lastTestBatch.time}}</h6>
+                <h6 style="align-content: center; margin-left: 3%"><span style="color: #00A000">Version:</span> {{lastTestBatch.version}}</h6>
+                <h6 style="align-content: center; margin-left: 3%"><span style="color: #00A000">ENV:</span> {{lastTestBatch.env}}</h6>
+
+                <div *ngIf="testBatch" >
+                    <div *ngFor="let feature of testBatch, #i = index">
+
+                        <div  style=" width: 100%; border-radius: 4%" >
+                            <div class="media-left">
+                                <canvas class="media-object" id="{{feature.feature}}" last-batch-chart [testBatch]="testBatch" width="75" height="75"
+                                        style="margin-bottom: 8%; margin-top: 8%; margin-left: 4%; vertical-align: middle"></canvas>
+
+                            </div>
+                            <div class="media-body" >
+                                <div style="margin-top: 14%">
+                                    <h4 class="media-heading" style="font-size: small"><span *ngIf="feature.failed > 0" style="background-color: red; color: white" class="badge">{{feature.failed}}</span>
+                                        <div >{{feature.feature}}</div>
+                                        </h4>
+                                    <button class="btn btn-read-report btn-sm"
+                                            (click)="showReportEvent($event, i)"
+                                            style="vertical-align: middle; font-size: small" >
+                                        See Full Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div  style="display: inline-block; vertical-align: top;width: 55%">
+        <div *ngIf="showReport" class="outterDiv">
+            <report [testBatch]="reportBatch" class="innerDiv"></report>
+
+        </div>
+        <div [hidden]="showReport">
+            <h2 align="center"> <span style="color: #00A000">{{selectedFeature}}: Failures vs Successes</span></h2>
+            <canvas  id="feature-chart" chart></canvas>
+        </div>
+    </div>
+
+
+    <div  style="display: inline-block; vertical-align: top; width: 19%">
+        <features *ngIf="testBatch != undefined" (change)="onFeatureChange($event)" [testBatch]="testBatch" ></features>
+    </div>
+
+
+</div>
